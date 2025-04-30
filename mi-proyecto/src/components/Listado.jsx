@@ -1,16 +1,21 @@
-import Cita from './Cita';
-import './Listado.css';
+import Cita from './Cita'
+import './Listado.css'
 
-const ListadoCitas = () => {
+function ListadoCitas({ citas, setCitas }) {
 
-    return ( 
-            <div className="one-half column">
-                <h2>Administra tus citas</h2>
-                <Cita nombreMascota="Toto" nombreDueño="Sol" fecha="5-7-2025" hora="15:30:00" sintomas="se le rompio una pata"/>
-                <Cita nombreMascota="Javier" nombreDueño="Indi" fecha="20-5-2025" hora="17:30:00" sintomas="vacunas"/>
-                <Cita nombreMascota="Ñoqui" nombreDueño="Flecha" fecha="8-8-2025" hora="12:45:00" sintomas="no quiere comer"/>
-            </div>
-    );
-};
+  function eliminarCita(id) {
+    const nuevasCitas = citas.filter(cita => cita.id !== id)
+    setCitas(nuevasCitas)
+  }
 
-export default ListadoCitas;
+  return (
+    <div className="one-half column">
+      <h2>Administra tus citas</h2>
+      {citas.map((cita) => (
+        <Cita id={cita.id} mascota={cita.mascota} dueno={cita.dueno} fecha={cita.fecha} hora={cita.hora} sintomas={cita.sintomas} eliminarCita={eliminarCita}/>
+      ))}
+    </div>
+  )
+}
+
+export default ListadoCitas

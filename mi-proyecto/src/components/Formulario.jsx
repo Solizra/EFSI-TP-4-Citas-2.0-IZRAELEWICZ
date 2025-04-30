@@ -1,32 +1,55 @@
+import { useState } from 'react'
 import './Formulario.css'
 
-function Formulario(){
-    return(
-        <>
-            <div className="one-half column">
-            <h2>Crear mi Cita</h2>
-                <form>
-                <label>Nombre Mascota</label>
-                <input type="text" name="mascota" class="u-full-width" placeholder="Nombre Mascota" value=""/>
+function Formulario({ setCitas }) {
+  const [mascota, setMascota] = useState('')
+  const [dueno, setDueno] = useState('')
+  const [fecha, setFecha] = useState('')
+  const [hora, setHora] = useState('')
+  const [sintomas, setSintomas] = useState('')
+  
+  // ID único que vamos a generar automáticamente
+  let idCita = 1
 
-                <label>Nombre Dueño</label>
-                <input type="text" name="propietario" class="u-full-width" placeholder="Nombre dueño de la mascota" value=""/>
+  function agregarCita() {
+    const nuevaCita = {
+      id: idCita++, 
+      mascota,
+      dueno,
+      fecha,
+      hora,
+      sintomas
+    }
 
-                <label>Fecha</label>
-                <input type="date" name="fecha" class="u-full-width" value=""/>
+    setCitas((citasAnteriores) => [...citasAnteriores, nuevaCita]) //se ponen los "..." porque sino se me actualiza, no se me agrega nada
 
-                <label>Hora</label>
-                <input type="time" name="hora" class="u-full-width" value=""/>
+    setMascota('')
+    setDueno('')
+    setFecha('')
+    setHora('')
+    setSintomas('')
+  }
 
-                <label>Sintomas</label>
-                <textarea name="sintomas" class="u-full-width"></textarea>
-            
-                <button type="submit" class="u-full-width button-primary">Agregar Cita</button>
+  return (
+    <div className="one-half column">
+      <h2>Crear mi Cita</h2>
+      <form>
+        <label>Nombre Mascota</label>
+        <input type="text" className="u-full-width" placeholder="Nombre Mascota" value={mascota} onChange={(e) => setMascota(e.target.value)}/>
+        <label>Nombre Dueño</label>
+        <input type="text" className="u-full-width" placeholder="Nombre del dueño" value={dueno} onChange={(e) => setDueno(e.target.value)}/>
+        <label>Fecha</label>
+        <input type="date" className="u-full-width" value={fecha} onChange={(e) => setFecha(e.target.value)}/>
+        <label>Hora</label>
+        <input type="time" className="u-full-width" value={hora} onChange={(e) => setHora(e.target.value)}/>
 
-                </form>
-            </div>
-        </>
-    )
+        <label>Síntomas</label>
+        <textarea className="u-full-width" value={sintomas} onChange={(e) => setSintomas(e.target.value)}></textarea>
+
+        <button type="button" className="u-full-width button-primary" onClick={agregarCita}>Agregar Cita </button>
+      </form>
+    </div>
+  )
 }
 
 export default Formulario
