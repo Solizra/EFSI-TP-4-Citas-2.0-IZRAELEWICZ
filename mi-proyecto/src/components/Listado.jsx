@@ -2,12 +2,13 @@ import Cita from './Cita'
 import './Listado.css'
 
 function ListadoCitas({citas, setCitas}) {
-
   function eliminarCita(id) {
     const confirmar = window.confirm("¿Estás seguro que deseas eliminar esta cita?");
   
     if (confirmar) {
+      //Creamos un nuevo array SIN la cita a eliminar.
       const nuevasCitas = citas.filter(cita => cita.id !== id)
+      //actualizamos el listado con las nuevascitas,en donde solo contiene las citas del id que no elegimos
       setCitas(nuevasCitas)
     }
   }
