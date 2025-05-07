@@ -1,6 +1,8 @@
 import { useState } from 'react'
 import './Formulario.css'
 
+
+//tuve que poner todos los usestate vacíos para que a partir de esto luego se completen
 function Formulario({ setCitas }) {
   const [mascota, setMascota] = useState('')
   const [dueno, setDueno] = useState('')
@@ -8,26 +10,31 @@ function Formulario({ setCitas }) {
   const [hora, setHora] = useState('')
   const [sintomas, setSintomas] = useState('')
   
-  // ID único que vamos a generar automáticamente
+//pongo el id unico
   let idCita = 1
 
   function agregarCita() {
-    const nuevaCita = {
-      id: idCita++, 
-      mascota,
-      dueno,
-      fecha,
-      hora,
-      sintomas
+    // Validar que ningun valor esté vacío
+    if (mascota === '' || dueno === ''|| fecha === '' || hora=== '' ||sintomas === '') {
+    alert('ERROR! Completá todos los campos antes de agregar la cita!');
+    return; // si hay cosas vacías, lo frena
+  }
+    const confirmar = window.confirm("¿Estás seguro de agregar esta cita?");
+  
+    if (confirmar) {
+      const nuevaCita = {
+        id: idCita++, mascota, dueno, fecha, hora, sintomas
+      };
+    
+      setCitas((citasAnteriores) => [...citasAnteriores, nuevaCita]);
+    
+      setMascota('');
+      setDueno('');
+      setFecha('');
+      setHora('');
+      setSintomas('');
     }
-
-    setCitas((citasAnteriores) => [...citasAnteriores, nuevaCita]) //se ponen los "..." porque sino se me actualiza, no se me agrega nada
-
-    setMascota('')
-    setDueno('')
-    setFecha('')
-    setHora('')
-    setSintomas('')
+  
   }
 
   return (
