@@ -1,5 +1,4 @@
 import Cita from './Cita'
-import './Listado.css'
 
 function ListadoCitas({citas, setCitas}) {
   function eliminarCita(id) {

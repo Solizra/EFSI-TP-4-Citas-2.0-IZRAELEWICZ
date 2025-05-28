@@ -11,7 +11,7 @@ function App() {
       <h1>ADMINISTRADOR DE CITAS</h1>
       <div class = "container">
         <div class= "row">
-        <Formulario setCitas = {setCitas}></Formulario>
+        <Formulario setCitas = {setCitas} citas ={citas}></Formulario>
         <ListadoCitas citas= {citas} setCitas = {setCitas}></ListadoCitas>
         </div>
       </div>

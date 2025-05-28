@@ -1,9 +1,9 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import './Formulario.css'
 
 
 //tuve que poner todos los usestate vacíos para que a partir de esto luego se completen
-function Formulario({ setCitas }) {
+function Formulario({ setCitas, citas }) {
   const [mascota, setMascota] = useState('')
   const [dueno, setDueno] = useState('')
   const [fecha, setFecha] = useState('')
@@ -33,7 +33,22 @@ function Formulario({ setCitas }) {
       setFecha('');
       setHora('');
       setSintomas('');
+
     }
+
+    useEffect(()=>{
+      const citaGuardada = localStorage.getItem(idCita)
+      if(citaGuardada)
+      {
+        setCitas(citaGuardada)
+      }
+    }, [])
+
+    useEffect(() => {
+      if(citas){
+        localStorage.setItem(idCita, JSON.stringify(citas))
+      }
+    },[citas])
   
   }
 
