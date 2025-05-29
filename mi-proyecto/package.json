@@ -3,7 +3,7 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
-  "homepage": "https://github.com/Solizra/EFSI-TP-4-Citas-2.0-IZRAELEWICZ.git",
+  "homepage": "https://solizra.github.io/EFSI-TP-4-CITAS-2.0-IZRAELEWICZ/",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
