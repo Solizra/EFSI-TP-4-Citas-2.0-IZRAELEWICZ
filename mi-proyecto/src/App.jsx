@@ -6,6 +6,18 @@ import ListadoCitas from './components/Listado'
 function App() {
   const [citas, setCitas] = useState([]);
 
+useEffect(() => {
+    const citasGuardadas = localStorage.getItem('citas')
+    if (citasGuardadas) {
+      setCitas(JSON.parse(citasGuardadas))
+    }
+  }, [])
+
+  // useEffect 2: guardar las citas cuando cambian
+  useEffect(() => {
+    localStorage.setItem('citas', JSON.stringify(citas))
+  }, [citas]) //SACAR LOS USE EFFECT DEL FORMULARIO!!
+
   return (
     <>
       <h1>ADMINISTRADOR DE CITAS</h1>
