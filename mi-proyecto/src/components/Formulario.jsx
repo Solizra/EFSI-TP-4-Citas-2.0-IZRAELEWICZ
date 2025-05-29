@@ -11,7 +11,7 @@ function Formulario({ setCitas, citas }) {
   const [sintomas, setSintomas] = useState('')
   
 //pongo el id unico
-  let idCita = 1
+  let idCita = citas.length;
 
   function agregarCita() {
     // Validar que ningun valor esté vacío
@@ -36,7 +36,7 @@ function Formulario({ setCitas, citas }) {
 
     }
 
-    useEffect(()=>{
+    /*useEffect(()=>{
       const citaGuardada = localStorage.getItem(idCita)
       if(citaGuardada)
       {
@@ -49,7 +49,7 @@ function Formulario({ setCitas, citas }) {
         localStorage.setItem(idCita, JSON.stringify(citas))
       }
     },[citas])
-  
+  */
   }
 
   return (

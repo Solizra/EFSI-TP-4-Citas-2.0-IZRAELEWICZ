@@ -9,6 +9,7 @@ function ListadoCitas({citas, setCitas}) {
       const nuevasCitas = citas.filter(cita => cita.id !== id)
       //actualizamos el listado con las nuevascitas,en donde solo contiene las citas del id que no elegimos
       setCitas(nuevasCitas)
+      localStorage.setItem(`citas`, JSON.stringify(nuevasCitas))
     }
   }
 

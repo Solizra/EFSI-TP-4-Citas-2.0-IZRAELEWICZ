@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import './App.css'
 import Formulario from './components/Formulario'
 import ListadoCitas from './components/Listado'
@@ -6,7 +6,7 @@ import ListadoCitas from './components/Listado'
 function App() {
   const [citas, setCitas] = useState([]);
 
-useEffect(() => {
+  useEffect(() => {
     const citasGuardadas = localStorage.getItem('citas')
     if (citasGuardadas) {
       setCitas(JSON.parse(citasGuardadas))
@@ -15,8 +15,10 @@ useEffect(() => {
 
   // useEffect 2: guardar las citas cuando cambian
   useEffect(() => {
-    localStorage.setItem('citas', JSON.stringify(citas))
-  }, [citas]) //SACAR LOS USE EFFECT DEL FORMULARIO!!
+    if (citas?.length) {
+      localStorage.setItem(`citas`, JSON.stringify(citas))
+    }
+  }, [citas]) 
 
   return (
     <>
